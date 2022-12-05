@@ -60,7 +60,7 @@ const {dispatch} = useContext(DarkModeContext);
     <div className='item'>
     <ListOutlinedIcon className='icon'/>
   
-
+      Login
     </div>
 
     <div className='item'>

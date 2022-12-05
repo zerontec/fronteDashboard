@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,79 +9,26 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './table.scss';
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPropiedades, deletPropiedad, getOnePropiedad } from '../../redux/actions';
 
 const TableList = () => {
 
-  
+  const dispatch = useDispatch()
 
-    const rows = [
-        {
-            id:123456,
-            product:"Acer Nitro 5",
-            img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            customer:"Jhon Smith",
-            date:"4 marzo",
-            amount: 785,
-            method: 'Cash on Deleviry',
-            status: 'Approved',
-        },
-        {
-            id:54789,
-            product:"Acer standar",
-            img:"https://m.media-amazon.com/images/I/51ryEasY34L.__AC_SY300_SX300_QL70_FMwebp_.jpg",
-            customer:"Luis Zeron",
-            date:"16 septiembre",
-            amount: 3000,
-            method: 'Cash on Deleviry',
-            status: 'Pending',
-        },
-        {
-            id:325426,
-            product:"Dell ",
-            img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            customer:"gergina Zeron",
-            date:"13 septiembre",
-            amount: 785,
-            method: 'Cash on Deleviry',
-            status: 'Approved',
-        },
-        {
-            id:22145,
-            product:"Acer Nitro 5",
-            img:"https://m.media-amazon.com/images/I/51ryEasY34L.__AC_SY300_SX300_QL70_FMwebp_.jpg",
-            customer:"Harry Potter",
-            date:"4 marzo",
-            amount: 785,
-            method: 'Cash on Deleviry',
-            status: 'Pending',
-        },
-         {
-            id:54568,
-            product:"Nevera",
-            img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            customer:"Shakira",
-            date:"4 marzo",
-            amount: 526,
-            method: 'Cash on Deleviry',
-            status: 'Approved',
-        },
-         {
-            id:621035,
-            product:"Razer 5",
-            img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            customer:"Lio ",
-            date:"4 marzo",
-            amount: 785,
-            method: 'Cash on Deleviry',
-            status: 'Pending',
-        },
+  const propiedades = useSelector(state => state.propiedades)
 
-      ];
+  useEffect(() => {
+    dispatch(getAllPropiedades());
+
+  },[])
+
+
 
 
   return (
+ 
+   
     <TableContainer component={Paper} className='table'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -98,28 +45,29 @@ const TableList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {propiedades?.map((propiedad, index) => (
             <TableRow
-              key={row.id}>
+              key={propiedad.id}>
               <TableCell >
-                {row.id}
+                {propiedad.id}
               </TableCell>
               <TableCell className='tableCell'>
                 <div className='tableCell'>
 <div className='cellWrapper'>
-            <img src={row.img} alt="" className="image"/>
-            {row.product}
-
+            <img src={propiedad.img} alt="" className="image"/>
+            {propiedad.type}
+          
+         
 </div>
 
                 </div>
               </TableCell>
-              <TableCell className='tableCell'>{row.customer}</TableCell>
-              <TableCell className='tableCell'>{row.date}</TableCell>
-              <TableCell className='tableCell'>{row.amount}</TableCell>
-              <TableCell className='tableCell'>{row.method}</TableCell>
+              <TableCell className='tableCell'>{propiedad.type}</TableCell>
+              <TableCell className='tableCell'>{propiedad.price}</TableCell>
+              <TableCell className='tableCell'>{propiedad.address}</TableCell>
+              <TableCell className='tableCell'>{propiedad.asesor}</TableCell>
               <TableCell className='tableCell'>
-                <span className={`status ${row.status}`}> {row.status} </span>
+                {/* <span className={`status ${propiedades.status}`}> {propiedades.status} </span> */}
 
               </TableCell>
             </TableRow>
@@ -128,6 +76,74 @@ const TableList = () => {
       </Table>
     </TableContainer>
   )
+
+
 }
 
 export default TableList
+
+
+    // const rows = [
+    //     {
+    //         id:123456,
+    //         product:"Acer Nitro 5",
+    //         img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer:"Jhon Smith",
+    //         date:"4 marzo",
+    //         amount: 785,
+    //         method: 'Cash on Deleviry',
+    //         status: 'Approved',
+    //     },
+    //     {
+    //         id:54789,
+    //         product:"Acer standar",
+    //         img:"https://m.media-amazon.com/images/I/51ryEasY34L.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+    //         customer:"Luis Zeron",
+    //         date:"16 septiembre",
+    //         amount: 3000,
+    //         method: 'Cash on Deleviry',
+    //         status: 'Pending',
+    //     },
+    //     {
+    //         id:325426,
+    //         product:"Dell ",
+    //         img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer:"gergina Zeron",
+    //         date:"13 septiembre",
+    //         amount: 785,
+    //         method: 'Cash on Deleviry',
+    //         status: 'Approved',
+    //     },
+    //     {
+    //         id:22145,
+    //         product:"Acer Nitro 5",
+    //         img:"https://m.media-amazon.com/images/I/51ryEasY34L.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+    //         customer:"Harry Potter",
+    //         date:"4 marzo",
+    //         amount: 785,
+    //         method: 'Cash on Deleviry',
+    //         status: 'Pending',
+    //     },
+    //      {
+    //         id:54568,
+    //         product:"Nevera",
+    //         img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer:"Shakira",
+    //         date:"4 marzo",
+    //         amount: 526,
+    //         method: 'Cash on Deleviry',
+    //         status: 'Approved',
+    //     },
+    //      {
+    //         id:621035,
+    //         product:"Razer 5",
+    //         img:"https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer:"Lio ",
+    //         date:"4 marzo",
+    //         amount: 785,
+    //         method: 'Cash on Deleviry',
+    //         status: 'Pending',
+    //     },
+
+    //   ];
+
