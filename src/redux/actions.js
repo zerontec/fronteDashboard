@@ -38,9 +38,9 @@ export const setMessage = (message) => ({
 
   //register
 
-  export const register = (username,name,password, email) =>(dispatch)=>{
+  export const register = (name,username,email,password) =>(dispatch)=>{
 
-    return authServices.register(username,name,email, password).then(
+    return authServices.register(name,username,email,password).then(
         (response)=> {
 
             dispatch({
@@ -125,17 +125,23 @@ export const login = (username, password) => (dispatch) => {
     return async function(dispatch){
 
       try{
-        const res = await axios.post(`${URL}propiedad/create`, data,{
+        const res = await axios.post(`${URL}propiedad/create`, data,
+);
+dispatch({
+  type: CREATE_PROPIEDAD,
+  payload: res.data
+})
 
-          headers:authHeader()
-
-        });
-        return res.data;
-
-      }catch(err){
-
-        return err.response
+      }catch(error){
+        console.log(error)
+        dispatch({
+          type: CREATE_PROPIEDAD,
+          payload: {msg:"Every input must be filled"}
+        })
       }
+
+
+
 
     }
 
@@ -165,13 +171,13 @@ return async function(dispatch){
 
 }
 
-export function getOnePropiedad(payload) {
+export function getOnePropiedad({id}) {
 
   return async function(dispatch){
   
     try{
-      const resp = await axios.get( `${URL}propiedad`, 
-      {params:payload})
+      const resp = await axios.get( `${URL}propiedad/detail-propiedad/${id}`, 
+     )
   
       dispatch({
   

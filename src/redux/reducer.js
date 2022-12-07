@@ -11,7 +11,8 @@ export const initialState = {
     : { isLoggedIn: false, user: null },
   propiedades:[],
   propiedadDetail:null,
-  propiedad:[]
+  propiedad:[],
+  sendPropiedad:{}
 
 
 };
@@ -60,7 +61,7 @@ case CREATE_PROPIEDAD:
   return{
 
     ...state,
-    create_propiedad:action.payload
+    sendPropiedad:action.payload
   
     
   };
@@ -75,7 +76,7 @@ case CREATE_PROPIEDAD:
     case GET_ONE_PROPIEDAD:
       return{
         ...state,
-        propiedad:action.payload
+        propiedadDetail:action.payload
 
       }
 
