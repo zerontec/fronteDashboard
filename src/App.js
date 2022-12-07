@@ -30,10 +30,10 @@ function App() {
 <Route path= "Register" element={<Register/>}/>
 <Route path='user'>
 <Route index element={<List/>}/>
-
+<Route path="propiedad/:id" element={<Single/>}/>
 <Route path="new" element={<New inputs={userInput } title="Agregar usuario"/>}/>
 </Route>
-<Route path="/detail/:id" element={<Single/>}/>
+
 <Route path='products'>
 <Route index element={<List/>}/>
 <Route path=":productId" element={<Single/>}/>
