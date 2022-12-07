@@ -12,7 +12,7 @@ const Single = () => {
 
   const{id} = useParams();
   const dispatch = useDispatch();
-  const propiedad = useSelector((state) =>state.propiedad )
+  const propiedad = useSelector((state) =>state.propiedadDetail )
 
 
 
@@ -32,23 +32,23 @@ dispatch(getOnePropiedad({id}));
 <div className="left">
 <p className="editButton">Edit</p>
 <h1 className="title">informacion</h1>
-{propiedad[id -1] ? (
+{propiedad ? (
 <div className="item"> 
 <img src="https://p4.wallpaperbetter.com/wallpaper/563/775/701/jon-snow-4k-image-download-wallpaper-preview.jpg" alt="" 
 className="itemImg" />
 <h1 className="details">
-<div className="itemTitle">{propiedad[id -1].type}</div>
+<div className="itemTitle">{propiedad.type}</div>
 <div className="detailItem">
-  <span className="itemKey">Email</span>S
-  <span className="itemvalue">Janegmail.com</span>
+  <span className="itemKey">Direccion</span>
+  <span className="itemvalue">{propiedad.address}</span>
 </div>
 <div className="detailItem">
-  <span className="itemKey">Phone</span>
-  <span className="itemvalue">+58 9712433</span>
+  <span className="itemKey">Precio</span>
+  <span className="itemvalue">${propiedad.price}</span>
 </div>
 <div className="detailItem">
-  <span className="itemKey">Addressl</span>
-  <span className="itemvalue">Bella vista </span>
+  <span className="itemKey">Asesor</span>
+  <span className="itemvalue">{propiedad.asesor} </span>
 </div>
 <div className="detailItem">
   <span className="itemKey">Country</span>
