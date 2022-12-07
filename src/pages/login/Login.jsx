@@ -8,22 +8,25 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import {login} from '../../redux/actions';
 import { useDispatch, useSelector } from "react-redux";
+import Swal from 'sweetalert2'
 
-
-
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
 
 
 const Login = () => {
 
+
+  
+
+
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          Este dato es requerido!
+        </div>
+      );
+    }
+  };
 
 let navigate = useNavigate();
 const form = useRef();
@@ -61,16 +64,20 @@ if(checkBtn.current.context._errors.length === 0){
 
 dispatch(login(username, password))
 .then(() => {
-
+  Swal.fire(
+    '¨sesion iniciada con exito !'
+   
+  )
 navigate('/home');
 window.location.reload()
 
 })
-.catch(()=> {
-setLoading(false);
+.catch((error) => {
+  setLoading(false);
+  alert(error.message);
+  window.location.reload();
 
-})
-
+});
 }else{
   setLoading(false);
 }
@@ -132,10 +139,10 @@ placeholder='' />
 <button  disabled={loading}>
 {loading && (
 
-<span className="spinner-border spinner-border-sm"></span>
+<span className="loader"></span>
 
 )}
- <span>Login</span>
+ <span>Logi</span>
 </button>
 {message && (
             <div className="form-group">
