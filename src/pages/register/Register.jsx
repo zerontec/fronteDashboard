@@ -9,13 +9,13 @@ import './register.scss'
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { Navigate, useNavigate  } from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 
 const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
-        This field is required!
+        Este dato es requerido!
       </div>
     );
   }
@@ -24,7 +24,7 @@ const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
-        This is not a valid email.
+        Este no es un email valido.
       </div>
     );
   }
@@ -33,7 +33,8 @@ const vusername = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
+        
+        El username debe tener entre  3 a 6 characters.
       </div>
     );
   }
@@ -42,7 +43,7 @@ const vname = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="alert alert-danger" role="alert">
-        The name must be between 3 and 20 characters.
+        El name debe tener entre  3 a 6 characters.
       </div>
     );
   }
@@ -51,7 +52,7 @@ const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
       <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
+        El  password debe tener entre 6 0 10 characters.
       </div>
     );
   }
@@ -100,8 +101,13 @@ const Register = () =>{
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(username,name, email, password))
+      dispatch(register(name,username, email, password))
         .then(() => {
+          Swal.fire(
+            '¨usuario registrado con exito !',
+            'You clicked the button!',
+            'success'
+          )
           setSuccessful(true);
           navigate("/login");
           window.location.reload();
@@ -177,7 +183,7 @@ return(
 <div className="formIput" >
 
 <label htmlFor="">Password</label>
-<Input
+<Input  
                   type="password"
                  
                   name="password"
