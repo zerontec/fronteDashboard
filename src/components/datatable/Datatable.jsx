@@ -78,7 +78,7 @@ const Datatable = () => {
               <TableCell className='tableCell'>{propiedad.asesor}</TableCell>
               <TableCell className='tableCell'>
                 <span className={`status ${propiedades.status}`}> {propiedades.status} </span> 
-                <Link to={`/detail/${propiedad.id}`}>
+                <Link to={`propiedad/${propiedad.id}`}>
        <div className='viewButton'>View</div></Link>
               </TableCell>
             </TableRow>
