@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { DarkMode } from '@mui/icons-material';
 import { DarkModeContext } from './context/darkModeContext';
 import { useContext } from 'react';
+import Edit from './pages/edit/Edit';
 
 function App() {
 
@@ -24,18 +25,23 @@ function App() {
     <div className={darkMode ? 'app dark' : ' app'}>
 <BrowserRouter>
 <Routes>
-<Route path='/' element={<Landing/>}/>
+<Route path='/' element={<Login/>}/>
 <Route path ='home' element={<Home/>} />
-<Route path= "login" element={<Login/>}/>
+
 <Route path= "Register" element={<Register/>}/>
-<Route path='user'>
+<Route path='activos'>
 <Route index element={<List/>}/>
 <Route path="propiedad/:id" element={<Single/>}/>
-<Route path="new" element={<New inputs={userInput } title="Agregar usuario"/>}/>
+<Route path='propiedad/edit/:id' element={<Edit/>}/>
+<Route path="new" element={<New inputs={userInput } title="Agregar Propiedad"/>}/>
 </Route>
 
 <Route path='products'>
-<Route index element={<List/>}/>
+<Route index element={<List/>}/>0
+
+
+
+
 <Route path=":productId" element={<Single/>}/>
 <Route path="new" element={<New inputs={productInputs} title="Agregar Productos" />}/>
 </Route>

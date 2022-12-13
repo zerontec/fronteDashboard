@@ -109,7 +109,7 @@ const Register = () =>{
             'success'
           )
           setSuccessful(true);
-          navigate("/login");
+          navigate("/");
           window.location.reload();
         })
         .catch(() => {

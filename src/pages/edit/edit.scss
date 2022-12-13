@@ -1,4 +1,4 @@
-.new{
+.edit{
 
     width: 100%;
     display: flex;
@@ -26,7 +26,7 @@
     
         .left{
     
-            flex: 3;
+            flex: 1;
             text-align: center;
     
             img{
@@ -69,7 +69,14 @@
     
     
     }
-    
+    .pe {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        color:red
+    }
     
     input{
     
@@ -78,7 +85,6 @@
         border:none ;
         border-bottom: 1px solid gray;
     }
-
     
     }
     
@@ -92,9 +98,6 @@
         font-weight: bold;
         cursor: pointer;
         margin-top: 10px;
-
-
-        
     }
     
     

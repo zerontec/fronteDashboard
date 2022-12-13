@@ -11,7 +11,7 @@ headers:authHeader()
 
 })}
 
-const getAdminBoard = async () => {
+const getAllPropierti= async () => {
 
 return await axios.get(URL_API + 'admin',{
     headers:authHeader()
@@ -22,7 +22,7 @@ return await axios.get(URL_API + 'admin',{
 export default {
 
 
-    getAdminBoard,
+    getAllPropierti,
     getUserBoard
 }
 

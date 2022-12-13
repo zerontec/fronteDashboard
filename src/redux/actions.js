@@ -125,7 +125,7 @@ export const login = (username, password) => (dispatch) => {
     return async function(dispatch){
 
       try{
-        const res = await axios.post(`${URL}propiedad/create`, data,
+        const res = await axios.post(`${URL}propiedad/create`, data,{  headers:authHeader()}
 );
 dispatch({
   type: CREATE_PROPIEDAD,
@@ -152,9 +152,10 @@ export function getAllPropiedades() {
 return async function(dispatch){
 
   try{
-    const resp = await axios.get( `${URL}propiedad/all`)
+    const resp = await axios.get( `${URL}propiedad/all`, {  headers:authHeader(),})
 
     dispatch({
+    
 
       type:GET_PROPIEDADES,
       payload:resp.data
@@ -176,7 +177,7 @@ export function getOnePropiedad({id}) {
   return async function(dispatch){
   
     try{
-      const resp = await axios.get( `${URL}propiedad/detail-propiedad/${id}`, 
+      const resp = await axios.get( `${URL}propiedad/detail-propiedad/${id}`, {  headers:authHeader(),} 
      )
   
       dispatch({
@@ -205,13 +206,13 @@ export function getOnePropiedad({id}) {
     return async function(dispatch){
 
       try{
-        const resp = await axios.put(`${URL}propiedad/${id} `, data)
-          dispatch({
+        const res = await axios.put(`${URL}propiedad/edit/${id} `,data, {  headers:authHeader()})
+         return dispatch({
             type:UPDATE_PROPIEDAD,
-            payload:data
+            payload:res.data,
 
           })
-          return resp
+        
       }catch(err){
 
           return err.response
@@ -222,12 +223,12 @@ export function getOnePropiedad({id}) {
 
   }
 
-  export async  function deletPropiedad(id) {
 
-    return async function(dispatch){
+
+  export const  deletPropiedad=(id) =>async(dispatch)=> {
 
 try{
-  await axios.delete(`${URL}${id}`)
+  await axios.delete(`${URL}propiedad/deleted/${id}`,{  headers:authHeader(),})
 
   dispatch({
     type:DELETE_PROPIEDAD,
@@ -235,13 +236,26 @@ try{
 
   })
 
+
 }catch(err){
 
   return err.response
 }
 
-    }
+    
 
   }
 
+
+
+
+//   export function deleteProduct(id) {
+//     return async function (dispatch) {
+//         const { data } = await axios.put(`${URL_BACK}/product/` + id)
+//         return dispatch({
+//             type: DELETE_PRODUCT,
+//             payload: data
+//         })
+//     }
+// }
 

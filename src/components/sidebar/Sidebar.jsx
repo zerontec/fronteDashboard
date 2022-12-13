@@ -41,7 +41,7 @@ const Sidebar = () => {
     
     </li>
     <p className='title'> LIST</p>
-    <Link to='/user' style={{textDecoration:"none"}}>
+    <Link to='/activos' style={{textDecoration:"none"}}>
     <li>
     <PersonOutlineIcon className='icon'/>
     <span>Users</span></li>

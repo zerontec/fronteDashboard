@@ -84,14 +84,14 @@ case CREATE_PROPIEDAD:
       case DELETE_PROPIEDAD:
         return{
 ...state,
-delete_propiedad:action.payload
+
 
         }
 
         case UPDATE_PROPIEDAD:
           return{
 ...state,
-update_propiedad: action.payload
+// update_propiedad: action.payload
 
           }
 

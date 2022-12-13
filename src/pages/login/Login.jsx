@@ -91,14 +91,14 @@ if(isLoggedIn){
 
   return (
     <div className='new'>
-<Sidebar/>
+
 <div className="newContainer">
   
-  <Navbar/>
 
 <div className="top">
 
 <h1>Inicia Sesion </h1>
+
 
 </div>
 <div className="bottom">

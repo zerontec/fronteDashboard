@@ -13,14 +13,15 @@ import './datatable.scss'
 import {userColumns, userRows} from '../../datatableSource'
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 
 
 const Datatable = () => {
-
+  
   const dispatch = useDispatch()
 
   const propiedades = useSelector(state => state.propiedades)
+
 
   useEffect(() => {
     dispatch(getAllPropiedades());
@@ -28,14 +29,55 @@ const Datatable = () => {
   },[])
 
 
+  // useEffect(() => {
+  //   userServices.getAllPropierti().then(
+  //     (response) => {
+  //       setContent(response.data);
+  //     },
+  //     (error) => {
+  //       const _content =
+  //         (error.response &&
+  //           error.response.data &&
+  //           error.response.data.message) ||
+  //         error.message ||
+  //         error.toString();
 
+  //       setContent(_content);
+  //     }
+  //   );
+  // }, []);
+
+  function deleteHandler(propiedad) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deletPropiedad(propiedad.id));
+        Swal.fire("the product has been deleted!", 
+          
+        );
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      } else {
+        Swal.fire("Your product is safe!");
+      }
+    });
+  }
 
   return (
 <>
 <div className="datatableTitle">
   Agregar nuevo usuario 
  
-  <Link to='/user/new' className='link'>Agregar Propiedad </Link>
+  <Link to='/activos/new' className='link'>Agregar Propiedad </Link>
 
 </div>
    
@@ -81,6 +123,17 @@ const Datatable = () => {
                 <Link to={`propiedad/${propiedad.id}`}>
        <div className='viewButton'>View</div></Link>
               </TableCell>
+              <TableCell className='tableCell'>
+                
+               
+       <div className='viewButton' id={propiedad.id} onClick={()=>deleteHandler(propiedad)}>Borrar</div>
+              </TableCell>
+              <TableCell className='tableCell'>
+                
+               <Link to ={`propiedad/edit/${propiedad.id}`}>
+                <div className='viewButton'>Editar</div>
+                </Link>
+                       </TableCell>
             </TableRow>
           ))}
         </TableBody>
