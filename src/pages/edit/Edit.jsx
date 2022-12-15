@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { editPropiedad, getAllPropiedades } from '../../redux/actions';
 import { useState,useEffect } from 'react';
 import Swal from 'sweetalert2'
+import { Edit, ArrowBack } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -32,11 +35,8 @@ function validate(update) {
   
 }
 
-  function redirect() {
-    window.location.href = "/admin/products";
-  }
 
-const Edit = () => {
+const Editi = () => {
  
 const {id} = useParams()
  const dispatch = useDispatch() 
@@ -59,6 +59,10 @@ const [update, setPropiedad] = useState({
 
 
 })
+function redirect() {
+  window.location.href = "/admin/products";
+}
+
 
 const handleInputChange = function (e) {
 
@@ -120,8 +124,13 @@ return (
 </div>
 <div className="bottom">
 <div className="left">
-<img src= "https://thumbs.dreamstime.com/z/estilo-de-contorno-icono-c%C3%A1mara-fotogr%C3%A1fica-francesa-vector-esquema-para-dise%C3%B1o-web-aislado-en-fondo-blanco-200947421.jpg" alt="" />
+{/* <img src= "https://thumbs.dreamstime.com/z/estilo-de-contorno-icono-c%C3%A1mara-fotogr%C3%A1fica-francesa-vector-esquema-para-dise%C3%B1o-web-aislado-en-fondo-blanco-200947421.jpg" alt="" /> */}
+<Edit className='icon'/>
+<div className="arrows">
+  <Link to='/activos'>
+<ArrowBack className="arrow"/> </Link>
 
+</div>
 
 </div>
 <div className="right">
@@ -215,4 +224,4 @@ name='asesor'
 }
 
 
-export default  Edit 
+export default  Editi 
