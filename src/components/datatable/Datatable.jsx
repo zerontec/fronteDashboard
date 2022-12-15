@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import './table.scss';
+// import './table.scss';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPropiedades, deletPropiedad, getOnePropiedad } from '../../redux/actions';
 import './datatable.scss'
@@ -21,6 +21,7 @@ const Datatable = () => {
   const dispatch = useDispatch()
 
   const propiedades = useSelector(state => state.propiedades)
+  const { user: currentUser } = useSelector((state) => state);
 
 
   useEffect(() => {
@@ -75,10 +76,11 @@ const Datatable = () => {
   return (
 <>
 <div className="datatableTitle">
-  Agregar nuevo usuario 
- 
+  Administrar propiedades
+ {currentUser.isLoggedIn && currentUser.roles[0] === 'ROLE_ADMIN' ? 
+ <>
   <Link to='/activos/new' className='link'>Agregar Propiedad </Link>
-
+  </>:null}
 </div>
    
     <TableContainer component={Paper} className='table'>
@@ -87,13 +89,14 @@ const Datatable = () => {
           <TableRow>
           
             <TableCell className='tableCell'>Traking ID</TableCell>
-            <TableCell className='tableCell'>Product</TableCell>
-            <TableCell className='tableCell'>Customer</TableCell>
-            <TableCell className='tableCell'>Date</TableCell>
-            <TableCell className='tableCell'>Amount</TableCell>
-            <TableCell className='tableCell'>Payment Method</TableCell>
+            <TableCell className='tableCell'>Imagen</TableCell>
+            <TableCell className='tableCell'>Tipo</TableCell>
+            <TableCell className='tableCell'>Precio</TableCell>
+            <TableCell className='tableCell'>Direccion</TableCell>
+            <TableCell className='tableCell'>Asesor</TableCell>
             <TableCell className='tableCell'>Ver</TableCell>
-           
+            <TableCell className='tableCell'>Editar</TableCell>
+            <TableCell className='tableCell'>Borrar</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -101,7 +104,7 @@ const Datatable = () => {
             <TableRow
               key={propiedad.id}>
               <TableCell >
-                {propiedad.id}
+                {propiedad.id} 
               </TableCell>
               <TableCell className='tableCell'>
                 <div className='tableCell'>
@@ -119,21 +122,25 @@ const Datatable = () => {
               <TableCell className='tableCell'>{propiedad.address}</TableCell>
               <TableCell className='tableCell'>{propiedad.asesor}</TableCell>
               <TableCell className='tableCell'>
-                <span className={`status ${propiedades.status}`}> {propiedades.status} </span> 
-                <Link to={`propiedad/${propiedad.id}`}>
+                {/* <span className={`status ${propiedades.status}`}> {propiedades.status} </span>  */}
+                <Link to={`propiedad/${propiedad.id}`} style={{textDecoration:"none"}}>
        <div className='viewButton'>View</div></Link>
               </TableCell>
+           {currentUser.isLoggedIn && currentUser.roles[0] === 'ROLE_ADMIN' ? 
+           <>
               <TableCell className='tableCell'>
                 
-               
-       <div className='viewButton' id={propiedad.id} onClick={()=>deleteHandler(propiedad)}>Borrar</div>
-              </TableCell>
-              <TableCell className='tableCell'>
-                
-               <Link to ={`propiedad/edit/${propiedad.id}`}>
+               <Link to ={`propiedad/edit/${propiedad.id}`} style={{textDecoration:"none"}} >
                 <div className='viewButton'>Editar</div>
                 </Link>
                        </TableCell>
+
+                       <TableCell className='tableCell'>
+                
+               
+                <div className='deleteButton' id={propiedad.id} onClick={()=>deleteHandler(propiedad)}>Borrar</div>
+                       </TableCell>
+                       </>:null}
             </TableRow>
           ))}
         </TableBody>

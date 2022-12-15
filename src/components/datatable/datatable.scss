@@ -3,10 +3,11 @@
     width: 100%;
     font-size: 24px;
     color:gray;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
 
     .link{
 
@@ -22,6 +23,26 @@ cursor: pointer;
     }
 
 }
+
+.deleteButton{
+    padding: 2px 5px;
+    border-radius: 5px;
+    color:crimson;
+    border: 1px dotted rgba(220,20,60,0.6);
+    cursor: pointer;
+
+}
+
+.viewButton{
+    padding: 2px 5px;
+    border-radius: 5px;
+    color:darkblue;
+    border: 1px dotted rgba(0,0,139,0.596);
+    cursor: pointer ;
+}
+
+
+
 .datatable {
 
 
@@ -90,6 +111,7 @@ cursor: pointer;
 
 
     }
+    
 
     .cellAction{
 
