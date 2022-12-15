@@ -1,6 +1,7 @@
 import {
   REGISTER_USER, SET_MESSAGE,CLEAR_MESSAGE,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT, GET_ONE_PROPIEDAD,
-  GET_PROPIEDADES, DELETE_PROPIEDAD, UPDATE_PROPIEDAD, CREATE_PROPIEDAD
+  GET_PROPIEDADES, DELETE_PROPIEDAD, UPDATE_PROPIEDAD, CREATE_PROPIEDAD,
+  REGISTER_SUCCESS, REGISTER_FAIL
 } from './actions'
     
 const user = JSON.parse(localStorage.getItem("user"));
@@ -19,7 +20,16 @@ export const initialState = {
 
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
-    
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+      case REGISTER_FAIL:
+        return {
+          ...state,
+          isLoggedIn: false,
+        };
 
     case REGISTER_USER:
       return {

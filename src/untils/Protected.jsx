@@ -1,15 +1,16 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
 
 
-
-
-
-
-export default function  Protected ({isLoggedIn,children}) {
+export default function  Protected ({children}) {
  
-if(!isLoggedIn){
+
+const { user: currentUser } = useSelector((state) => state);
+const autori = currentUser.isLoggedIn
+
+if(!autori){
 
 return <Navigate to="/" replace/>
 

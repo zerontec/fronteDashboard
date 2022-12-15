@@ -10,6 +10,10 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { Navigate, useNavigate  } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import Footer from "../../components/footer/Fotter";
+import { Link } from "react-router-dom";
+
+
 
 const required = (value) => {
   if (!value) {
@@ -121,11 +125,14 @@ const Register = () =>{
 
 
 return(
-<div className='new'>
-<Sidebar/>
+
+<>
+
+<div className='register'>
+{/* <Sidebar/> */}
 <div className="newContainer">
   
-  <Navbar/>
+  {/* <Navbar/> */}
 
 <div className="top">
 
@@ -197,7 +204,7 @@ return(
 </>
 
 )}
-<button>Send</button>
+<div className="bt"><button>Send</button></div>
 
 
 
@@ -211,15 +218,16 @@ return(
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
 
 </Form>
-
+<Link to='/' >
+<p className='register'>O Inicia Sesion</p></Link>
 </div>
 </div>
 
   </div> 
 
     </div>
-
-
+<Footer/>
+</>
 )
 
 

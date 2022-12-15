@@ -7,13 +7,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPropiedad } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
-import { useSelect } from '@mui/base';
-
-
+import Axios from 'axios';
+import {Image} from 'cloudinary-react'
+import { Home } from '@mui/icons-material';
 
 
 
 const New = ({inputs, title}) => { 
+
+  
+  const navigate = useNavigate()
+
+  // const {sendPropiedad}= useSelector(state => state.reducer)
+  const dispatch= useDispatch();
+  const [disable, setDisable] = useState(true);
+  const [errors, setErrors] = useState({});
+
+//form state - state del form
+const [formInfo, setFormInfo] = useState({
+  type:"",
+  address:"",
+  price:"",
+  asesor:"",
+  image:""
+
+})
 
   function validate(formInfo) {
     let errors = {};
@@ -30,6 +48,9 @@ const New = ({inputs, title}) => {
       formInfo.asesor
       ? (errors.asesor= "")
       : (errors.asesor= "Enter Summary Please");
+      formInfo.image
+      ? (errors.image= "")
+      : (errors.image= "Seleccione una imagen ");
       if (formInfo.type && formInfo.address && formInfo.price && formInfo.asesor ) {
           setDisable(false)
       }
@@ -40,23 +61,8 @@ const New = ({inputs, title}) => {
   
 
 
-  const navigate = useNavigate()
 
-  // const {sendPropiedad}= useSelector(state => state.reducer)
-  const dispatch= useDispatch();
-  const [disable, setDisable] = useState(true);
-  const [errors, setErrors] = useState({});
-
-
-
-  //form state - state del form
-  const [formInfo, setFormInfo] = useState({
-    type:"",
-    address:"",
-    price:"",
-    asesor:""
-
-  })
+  
 
     //handles every change but submit's - maneja todo change excepto el del select
     const handleChange = e => {
@@ -86,7 +92,8 @@ const New = ({inputs, title}) => {
     type:"",
     address:"",
     price:"",
-    asesor:""
+    asesor:"",
+    image:""
 
 
    })
@@ -100,6 +107,24 @@ const New = ({inputs, title}) => {
     })
   }
   }
+
+  const uploadImages = (files) => {
+
+const formData = new FormData();
+formData.append('file', files[0]);
+formData.append("upload_preset", "sbzlyicj");
+
+
+// const newAxios = Axios.create();
+Axios.post(' https://api.cloudinary.com/v1_1/dzbo1hei6/image/upload', formData)
+.then((res) => {
+
+
+setFormInfo({ ...formInfo, 
+  image:res.data.secure_url });
+setErrors(validate(formInfo))
+})
+}
 
 
     
@@ -136,8 +161,8 @@ const New = ({inputs, title}) => {
 </div>
 <div className="bottom">
 <div className="left">
-<img src= "https://thumbs.dreamstime.com/z/estilo-de-contorno-icono-c%C3%A1mara-fotogr%C3%A1fica-francesa-vector-esquema-para-dise%C3%B1o-web-aislado-en-fondo-blanco-200947421.jpg" alt="" />
-
+{/* <img src= "https://thumbs.dreamstime.com/z/estilo-de-contorno-icono-c%C3%A1mara-fotogr%C3%A1fica-francesa-vector-esquema-para-dise%C3%B1o-web-aislado-en-fondo-blanco-200947421.jpg" alt="" /> */}
+<Home className='icon'/>
 
 </div>
 <div className="right">
@@ -146,6 +171,19 @@ const New = ({inputs, title}) => {
 <form  onSubmit={handleSubmit}>
 
 
+<div className="formIput">
+
+<label htmlFor="">Imagen</label>
+<input type='file'
+id='image'
+
+value={formInfo.image}
+onChange={uploadImages}
+name='image'
+
+/>
+{errors.image && <p className="pe">{errors.image}</p>}
+</div>
 
 <div className="formIput">
 <label htmlFor="">Tipo de Propiedad</label>

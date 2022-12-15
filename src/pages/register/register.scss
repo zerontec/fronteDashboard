@@ -1,21 +1,32 @@
-.new{
+.register{
 
     width: 100%;
-    display: flex;
+    display:flex;
+    justify-content: center;
+    margin-top: 50px;
+
     
     .newContainer{
     
-    flex: 6;
-    
+   
+    .register{
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        color: rgb(19, 19, 95);
+        font-size: large;
+        cursor: pointer;
+    }
     
     .top,
     .bottom{
     
         -webkit-box-shadow:2px 4px 10px 1px rgba(0,0,0.47);
         box-shadow:2px 4px 10px 1px rgba(201,201,201,0.47);
-        padding: 10px;
-        margin: 20px;
+        padding: 40px;
+        margin: 50px;
         display: flex;
+        justify-content: center;
     
     h1{
     
@@ -24,10 +35,10 @@
     
     }
     
-        .left{
+        // .left{
     
-            flex: 1;
-            text-align: center;
+        //     flex: 3;
+        //     text-align: center;
     
             img{
     
@@ -37,11 +48,11 @@
                 object-fit: cover;
             }
     
-        }
+        
     
         .right{  
     
-            flex: 2;
+            flex: 6;
     
             form{
     
@@ -74,10 +85,11 @@
     input{
     
         width: 100%;
-        padding: 5px;
+        // padding: 5px;
         border:none ;
         border-bottom: 1px solid gray;
     }
+
     
     }
     
@@ -91,8 +103,16 @@
         font-weight: bold;
         cursor: pointer;
         margin-top: 10px;
+
+
+        
     }
     
+    .bt{
+display: flex;
+align-content: center;
+
+    }
     
             }
     

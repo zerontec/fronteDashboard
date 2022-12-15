@@ -17,16 +17,25 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Link } from 'react-router-dom';
 import { LocalShipping } from '@mui/icons-material';
 import { DarkModeContext } from '../../context/darkModeContext';
-
+import { logout } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {
 
+const dispatchar = useDispatch()
+
+const logoOut =() => {
+dispatchar(logout()) 
+window.location.reload()
+
+
+}
   const {dispatch} = useContext(DarkModeContext)
   return (
 
     <div className='sidebar'>
     <div className='top'>
-      <Link to ='/' style={{textDecoration:"none"}}>
+      <Link to ='/home' style={{textDecoration:"none"}}>
     <span className='logo'>Dashboard</span>
     </Link>
     </div>
@@ -37,14 +46,15 @@ const Sidebar = () => {
     <p className='title'> MAIN</p>
     <li> 
     <DashboardIcon className='icon'/>
+    <Link to='/home'style={{textDecoration:"none"}}>
     <span>Dashboard</span>
-    
+    </Link>
     </li>
     <p className='title'> LIST</p>
     <Link to='/activos' style={{textDecoration:"none"}}>
     <li>
     <PersonOutlineIcon className='icon'/>
-    <span>Users</span></li>
+    <span>Propiedades</span></li>
     </Link>
     <Link to='/products' style={{textDecoration:"none"}}>
     <li>
@@ -83,7 +93,7 @@ const Sidebar = () => {
        <span>Profile</span></li>
        <li>
        <ExitToAppIcon className='icon' />
-       <span>Logout</span></li>    
+       <span onClick={logoOut}>Logout</span></li>    
     </ul>
 
     </div>
