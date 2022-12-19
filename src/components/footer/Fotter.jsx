@@ -10,9 +10,9 @@ return (
     <>
 <footer className="footer">
   <div className="footer__addr">
-    <h1 className="footer__logo">Something</h1>
+    <h1 className="footer__logo">Test App</h1>
         
-    <h2>Contact</h2>
+    <h2>Contactanos</h2>
     
     {/* <address>
       5534 Somewhere In. The World 22193-10212<br>
@@ -35,33 +35,33 @@ return (
         </li>
             
         <li>
-          <a href="#">Alternative Ads</a>
+          <a href="#">Alternativa Ads</a>
         </li>
       </ul>
     </li>
     
     <li className="nav__item nav__item--extra">
-      <h2 className="nav__title">Technology</h2>
+      <h2 className="nav__title">Tecnologias</h2>
       
       <ul className="nav__ul nav__ul--extra">
         <li>
-          <a href="#">Hardware Design</a>
+          <a href="#">Diseño Hardware </a>
         </li>
         
         <li>
-          <a href="#">Software Design</a>
+          <a href="#">Diseño de Software </a>
         </li>
         
         <li>
-          <a href="#">Digital Signage</a>
+          <a href="#">Señalizacion Digital</a>
         </li>
         
         <li>
-          <a href="#">Automation</a>
+          <a href="#">Automatización</a>
         </li>
         
         <li>
-          <a href="#">Artificial Intelligence</a>
+          <a href="#">Inteligencia Artificial </a>
         </li>
         
         <li>
@@ -90,10 +90,10 @@ return (
   </ul>
   
   <div className="legal">
-    <p>&copy; 2019 Something. All rights reserved.</p>
+    <p>&copy; 2022 Leo Zeron. todos los Derechos reservados.</p>
     
     <div className="legal__links">
-      <span>Made with <span className="heart">♥</span> remotely from Anywhere</span>
+      <span>Hecho con <span className="heart">♥</span>Remotamente desde donde sea </span>
     </div>
   </div>
 </footer>
