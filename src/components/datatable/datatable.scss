@@ -42,6 +42,15 @@ cursor: pointer;
 }
 
 
+.mensaje{
+
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: gray;
+    justify-content: center;
+
+}
 
 .datatable {
 
@@ -71,6 +80,7 @@ cursor: pointer;
 
     }
 }
+
 
     .cellWithImg {
         display: flex;

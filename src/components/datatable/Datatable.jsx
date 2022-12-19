@@ -50,17 +50,17 @@ const Datatable = () => {
 
   function deleteHandler(propiedad) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: 'Estas Seguro',
+      text: "No podras revertir esta opracion !",
+      icon: 'advertencia',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Si, Borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deletPropiedad(propiedad.id));
-        Swal.fire("the product has been deleted!", 
+        Swal.fire("La propiedad ha sido borrada!", 
           
         );
 
@@ -68,7 +68,7 @@ const Datatable = () => {
           window.location.reload();
         }, 500);
       } else {
-        Swal.fire("Your product is safe!");
+        Swal.fire("Tu Propiedad Esta Segura !");
       }
     });
   }
@@ -100,7 +100,7 @@ const Datatable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {propiedades?.map((propiedad, index) => (
+          {propiedades  && propiedades?.map((propiedad) => (
             <TableRow
               key={propiedad.id}>
               <TableCell >
@@ -142,9 +142,11 @@ const Datatable = () => {
                        </TableCell>
                        </>:null}
             </TableRow>
-          ))}
+          ))} 
         </TableBody>
+        
       </Table>
+      {propiedades.length < 1 ? <><div className='mensaje'><p>No hay Propiedades que mostrar</p></div></>:null}
     </TableContainer>
 
     </>
