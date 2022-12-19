@@ -43,7 +43,7 @@ const Featured = () => {
 <div className='itemTitle'>Lats Week</div>
 <div className='itemResult positive'>
 <KeyboardArrowDownIcon fontSize='small'/>
-<div classname='resultAmount'>$12.4k</div>
+<div className='resultAmount'>$12.4k</div>
 
 </div>
 
