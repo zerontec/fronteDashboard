@@ -190,7 +190,6 @@ name='image'
 <input 
 type='text'
 id='type'
-
 value={formInfo.type}
 onChange={handleChange}
 name='type'
