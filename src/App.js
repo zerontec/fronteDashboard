@@ -12,16 +12,14 @@ import './style/dark.scss';
 import { DarkModeContext } from './context/darkModeContext';
 import { useContext } from 'react';
 import Editi from './pages/edit/Edit';
-import Protected from './untils/Protected';
-import IsRoleProtect from './untils/isRoleProtect';
+import ProtectedRoute from './untils/ProtectedA';
+
 
 function App() {
 
 
 
-
-
-
+  const user = JSON.parse(localStorage.getItem("user"));
   const { darkMode } = useContext(DarkModeContext)
 
 
@@ -30,15 +28,16 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />} />
-          <Route path='home' element={<Protected><Home /></Protected>} />
-
           <Route path="Register" element={<Register />} />
 
-          <Route path='activos' >
-            <Route index element={<Protected><List /></Protected>} />
-            <Route path="propiedad/:id" element={<Protected><Single /></Protected>} />
-            <Route path='propiedad/edit/:id' element={<Protected><IsRoleProtect><Editi /></IsRoleProtect> </Protected>} />
-            <Route path="new" element={<Protected><IsRoleProtect><New inputs={userInput} title="Agregar Propiedad" /></IsRoleProtect> </Protected>} />
+          <Route path='home' element={<ProtectedRoute isAllowed={user}><Home /></ProtectedRoute>} />
+          <Route path='activos' element={<ProtectedRoute isAllowed={!!user} />} >
+            <Route index element={<List />} />
+            <Route path="propiedad/:id" element={<Single />} />
+            <Route path='propiedad/edit/:id' element={<ProtectedRoute redirectPath="/home"
+              isAllowed={!!user && user.roles.includes('ROLE_ADMIN') }><Editi /></ProtectedRoute> } />
+            <Route path="new" element={<ProtectedRoute redirectPath="/home"
+              isAllowed={!!user && user.roles.includes('ROLE_ADMIN') }><New inputs={userInput} title="Agregar Propiedad" /> </ProtectedRoute>} />
           </Route>
 
           <Route path='products'>
