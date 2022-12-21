@@ -108,8 +108,8 @@ const [formInfo, setFormInfo] = useState({
   }
   }
 
-  const uploadImages = (files) => {
-
+  const uploadImages = (img) => {
+ const files = img;
 const formData = new FormData();
 formData.append('file', files[0]);
 formData.append("upload_preset", "sbzlyicj");
@@ -121,31 +121,10 @@ Axios.post(' https://api.cloudinary.com/v1_1/dzbo1hei6/image/upload', formData)
 
 
 setFormInfo({ ...formInfo, 
-  image:res.data.secure_url });
+  image:res.data });
 setErrors(validate(formInfo))
 })
 }
-
-
-    
-
-
-   
-
-
-  
-  
-
-
-
-
-// const newPropiedad = ()=>{
-
-//   setPropiedad(initailPropiedadState);
-//   setSubmitted(false);
-
-// }
-
 
   return (
     <div className='new'>

@@ -25,20 +25,20 @@ const Home = () => {
         </div>
 
         <div className='charts'>
-        <Featured/>
-        <Chart title='Ultimos 6 meses ' aspect={2 /1 }/>
+          <Featured />
+          <Chart title='Ultimos 6 meses ' aspect={2 / 1} />
 
 
         </div>
 
-{/* list Container */}
-<div className='listContainer'>
-    <div className='listTitle'>Ultimas Operaciones</div>
+        {/* list Container */}
+        <div className='listContainer'>
+          <div className='listTitle'>Ultimas Operaciones</div>
 
-    <Table/>
+          <Table />
 
 
-  </div>
+        </div>
 
       </div>
     </div>

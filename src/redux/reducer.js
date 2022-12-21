@@ -1,7 +1,7 @@
 import {
   REGISTER_USER, SET_MESSAGE,CLEAR_MESSAGE,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT, GET_ONE_PROPIEDAD,
   GET_PROPIEDADES, DELETE_PROPIEDAD, UPDATE_PROPIEDAD, CREATE_PROPIEDAD,
-  REGISTER_SUCCESS, REGISTER_FAIL
+  REGISTER_SUCCESS, REGISTER_FAIL,GET_ALL_USERS,GET_ONE_USER,UPDATE_USER,CREATE_USERS,DELETE_USER
 } from './actions'
     
 const user = JSON.parse(localStorage.getItem("user"));
@@ -13,7 +13,9 @@ export const initialState = {
   propiedades:[],
   propiedadDetail:null,
   propiedad:[],
-  sendPropiedad:{}
+  sendPropiedad:{},
+  sendUsers:{},
+  userDetail:null
 
 
 };
@@ -105,6 +107,43 @@ case CREATE_PROPIEDAD:
 
           }
 
+          case CREATE_USERS:
+            return{
+          
+              ...state,
+              sendUsers:action.payload
+            
+              
+            };
+          
+
+          case GET_ALL_USERS:
+            return{
+    ...state,
+    
+    
+            }
+
+            case GET_ONE_USER:
+              return{
+                ...state,
+                userDetail:action.payload
+        
+              }
+
+              case UPDATE_USER:
+                return{
+      ...state,
+      // update_user: action.payload
+      
+                }
+        
+case DELETE_USER:
+  return{
+
+    ...state
+
+  }
     
     default:
       return state;

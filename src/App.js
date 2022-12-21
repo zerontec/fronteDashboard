@@ -13,7 +13,7 @@ import { DarkModeContext } from './context/darkModeContext';
 import { useContext } from 'react';
 import Editi from './pages/edit/Edit';
 import ProtectedRoute from './untils/ProtectedA';
-
+import Perfil from './pages/perfil/Perfil'
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path="Register" element={<Register />} />
-
+          <Route path = 'perfil' element={<Perfil/>}/>
           <Route path='home' element={<ProtectedRoute isAllowed={user}><Home /></ProtectedRoute>} />
           <Route path='activos' element={<ProtectedRoute isAllowed={!!user} />} >
             <Route index element={<List />} />
@@ -40,10 +40,10 @@ function App() {
               isAllowed={!!user && user.roles.includes('ROLE_ADMIN') }><New inputs={userInput} title="Agregar Propiedad" /> </ProtectedRoute>} />
           </Route>
 
-          <Route path='products'>
+          <Route path='users'>
             <Route index element={<List />} />
-            <Route path=":productId" element={<Single />} />
-            <Route path="new" element={<New inputs={productInputs} title="Agregar Productos" />} />
+            <Route path="user/:id" element={<Single />} />
+            <Route path="new" element={<New inputs={productInputs} title="Crear usuarios" />} />
           </Route>
 
 

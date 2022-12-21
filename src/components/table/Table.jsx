@@ -21,19 +21,19 @@ const TableList = () => {
   useEffect(() => {
     dispatch(getAllPropiedades());
 
-  },[])
+  }, [])
 
 
 
 
   return (
- 
-   
+
+
     <TableContainer component={Paper} className='table'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-          
+
             <TableCell className='tableCell'>Traking ID</TableCell>
             <TableCell className='tableCell'>Product</TableCell>
             <TableCell className='tableCell'>Customer</TableCell>
@@ -41,7 +41,7 @@ const TableList = () => {
             <TableCell className='tableCell'>Amount</TableCell>
             <TableCell className='tableCell'>Payment Method</TableCell>
             <TableCell className='tableCell'>Status</TableCell>
-           
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -53,12 +53,12 @@ const TableList = () => {
               </TableCell>
               <TableCell className='tableCell'>
                 <div className='tableCell'>
-<div className='cellWrapper'>
-            <img src={propiedad.img} alt="" className="image"/>
-            {propiedad.type}
-          
-         
-</div>
+                  <div className='cellWrapper'>
+                    <img src={propiedad.img} alt="" className="image" />
+                    {propiedad.type}
+
+
+                  </div>
 
                 </div>
               </TableCell>

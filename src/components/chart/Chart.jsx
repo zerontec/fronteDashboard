@@ -1,27 +1,27 @@
 import React from 'react';
 import './chart.scss';
-import {AreaChart, Area , XAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
+import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
 
-    {name:"Enero", Total:1200},
-    {name:"Febero", Total:2100},
-    {name:"Marzo", Total:3100},
-    {name:"Abril", Total:800},
-    {name:"Mayo", Total:600},
-    {name:"Junio", Total:2200}
+  { name: "Enero", Total: 1200 },
+  { name: "Febero", Total: 2100 },
+  { name: "Marzo", Total: 3100 },
+  { name: "Abril", Total: 800 },
+  { name: "Mayo", Total: 600 },
+  { name: "Junio", Total: 2200 }
 
 ]
 
 
-const Chart = ({aspect, title}) => {
+const Chart = ({ aspect, title }) => {
 
-    return (
+  return (
 
-<div className='chart'>
-<div className='title'>{title}</div>
-<ResponsiveContainer width='100%' aspect={aspect}>
-<AreaChart
+    <div className='chart'>
+      <div className='title'>{title}</div>
+      <ResponsiveContainer width='100%' aspect={aspect}>
+        <AreaChart
           width={500}
           height={400}
           data={data}
@@ -32,7 +32,7 @@ const Chart = ({aspect, title}) => {
             bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" className='chartGrid'  />
+          <CartesianGrid strokeDasharray="3 3" className='chartGrid' />
           <XAxis dataKey="name" color='gray' />
           {/* <YAxis /> */}
           <Tooltip />
@@ -43,11 +43,11 @@ const Chart = ({aspect, title}) => {
 
 
 
-</ResponsiveContainer>
+      </ResponsiveContainer>
 
-</div>
+    </div>
 
-    )
+  )
 
 
 
